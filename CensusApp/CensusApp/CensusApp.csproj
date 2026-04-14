@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3A18DBBC-22C9-4117-B8C8-932EB3420BCF}</ProjectGuid>
+    <ProjectGuid>{4D36FE3A-52D2-43D5-8FC9-065C58FA2D89}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>LR4_PQAdmin</RootNamespace>
-    <AssemblyName>LR4 PQAdmin</AssemblyName>
+    <RootNamespace>CensusApp</RootNamespace>
+    <AssemblyName>CensusApp</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -95,27 +95,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditForm.Designer.cs">
+      <DependentUpon>AddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CensusRecord.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="People.cs" />
-    <Compile Include="PersonEditForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PersonEditForm.Designer.cs">
-      <DependentUpon>PersonEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PGPeapleLoader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddEditForm.resx">
+      <DependentUpon>AddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PersonEditForm.resx">
-      <DependentUpon>PersonEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
