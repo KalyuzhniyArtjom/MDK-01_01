@@ -28,7 +28,7 @@ namespace KalyuzhniyDemo
 
                     while (reader.Read())
                     {
-                        Product product = new Product
+                        Product product = new Product 
                         {
                             Article = reader.GetString(0),
                             Name = reader.GetString(1),
