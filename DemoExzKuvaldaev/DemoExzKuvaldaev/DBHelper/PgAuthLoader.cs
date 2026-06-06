@@ -22,7 +22,7 @@ namespace KalyuzhniyDemo
                     var sql = @"
                         SELECT u.id, u.full_name, u.login, u.password, u.role_id, r.role_name 
                         FROM users u
-                        JOIN user_roles r ON u.role_id = r.id
+                        JOIN user_roles r ON u.role_id = r.id 
                         WHERE u.login = @login AND u.password = @password";
                     var cmd = new NpgsqlCommand(sql, con);
                     cmd.Parameters.AddWithValue("@login", login);
