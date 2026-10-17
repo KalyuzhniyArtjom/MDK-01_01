@@ -5,7 +5,6 @@ using System.Collections.Generic;
 
 namespace DemoLib.Presenters
 { 
-
     public class ProductsPresenter
     {
         private IProductsModel model_;
@@ -20,6 +19,8 @@ namespace DemoLib.Presenters
         {
             views_.Add(view);
         }
+
+
 
         public void Update()
         {
