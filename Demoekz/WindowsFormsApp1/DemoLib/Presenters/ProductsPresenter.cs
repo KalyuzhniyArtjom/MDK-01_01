@@ -4,7 +4,8 @@ using System;
 using System.Collections.Generic;
 
 namespace DemoLib.Presenters
-{
+{ 
+
     public class ProductsPresenter
     {
         private IProductsModel model_;
