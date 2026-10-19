@@ -38,7 +38,7 @@ namespace DemoUIComponents
         {
             if (product_.ImagePath == "" || product_.ImagePath == null)
             {
-                return "D:\\test\\demo2027\\WindowsFormsApp1\\Images\\picture.png";
+                return "..\\..\\..\\Images\\picture.png";
             }
 
             return product_.ImagePath;

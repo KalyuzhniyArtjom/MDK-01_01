@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using System.Linq;
 
 namespace DemoLib.Models
@@ -42,8 +41,8 @@ namespace DemoLib.Models
                 Parts = "96% натуральная кожа, 4% полиуретан ",
                 ImagePath = "..\\..\\..\\Images\\picture.png"
             });
+            
             Order order_1 = new Order();
-
             order_1.Items = new List<OrderItem>();
             order_1.Items.Add(new OrderItem
             {
@@ -51,8 +50,8 @@ namespace DemoLib.Models
                 Count = 10,
                 SaleDate = new System.DateTime(2026, 8, 10)
             });
+            
             Order order_2 = new Order();
-
             order_2.Items = new List<OrderItem>();
             order_2.Items.Add(new OrderItem
             {
@@ -60,8 +59,8 @@ namespace DemoLib.Models
                 Count = 10,
                 SaleDate = new System.DateTime(2026, 9, 10)
             });
+            
             Order order_3 = new Order();
-
             order_3.Items = new List<OrderItem>();
             order_3.Items.Add(new OrderItem
             {
@@ -69,16 +68,33 @@ namespace DemoLib.Models
                 Count = 10,
                 SaleDate = new System.DateTime(2026, 10, 10)
             });
+            
             orders_.Add(order_1);
             orders_.Add(order_2);
             orders_.Add(order_3);
 
             UpdatePrices(orders_);
         }
+        public void UpdateListModel(List<Product> newProducts)
+        {
+            if (newProducts == null)
+            {
+                data_ = new List<Product>();
+            }
+            else
+            {
+                data_ = new List<Product>(newProducts);
+            }
+        }
 
         public List<Product> Load()
         {
             return data_;
+        }
+
+        public List<Order> LoadOrders()
+        {
+            return orders_;
         }
 
         public int GetCountProducts()
@@ -89,10 +105,9 @@ namespace DemoLib.Models
         public void UpdatePrices(List<Order> orders)
         {
             DateTime current = DateTime.Now; // 10.10.2026
-           
-            DateTime prevMontsDate = current.AddMonths(-1); // 10.09.2026
-            DateTime start = new DateTime(prevMontsDate.Year, prevMontsDate.Month, 1); // 01.09.2026
-            DateTime end = new DateTime(prevMontsDate.Year, prevMontsDate.Month + 1, 1).AddDays(-1);
+            DateTime prevMonthsDate = current.AddMonths(-1); // 10.09.2026
+            DateTime start = new DateTime(prevMonthsDate.Year, prevMonthsDate.Month, 1); // 01.09.2026
+            DateTime end = new DateTime(prevMonthsDate.Year, prevMonthsDate.Month + 1, 1).AddDays(-1);
 
             List<Product> discountProducts = data_
                .Where(product => !orders
