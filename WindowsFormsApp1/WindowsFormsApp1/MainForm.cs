@@ -28,6 +28,15 @@ namespace WindowsFormsApp1
 
         private void MainForm_Load(object sender, System.EventArgs e)
         {
+            if (lblUserInfo != null)
+            {
+                lblUserInfo.Text = AuthUser.FullName;
+            }
+
+            if (lblUserRole != null)
+            {
+                lblUserRole.Text = AuthUser.Role;
+            }
             int countProducts = model_.GetCountProducts();
             for (int i = 0; i < countProducts; i++)
             {
