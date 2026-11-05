@@ -80,7 +80,7 @@
             this.btnLogin.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnLogin.Location = new System.Drawing.Point(15, 165);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(75, 23);
+            this.btnLogin.Size = new System.Drawing.Size(97, 23);
             this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "Войти";
             this.btnLogin.UseVisualStyleBackColor = false;
@@ -91,9 +91,9 @@
             this.btnGuest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(246)))), ((int)(((byte)(231)))));
             this.btnGuest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuest.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnGuest.Location = new System.Drawing.Point(112, 165);
+            this.btnGuest.Location = new System.Drawing.Point(190, 165);
             this.btnGuest.Name = "btnGuest";
-            this.btnGuest.Size = new System.Drawing.Size(102, 23);
+            this.btnGuest.Size = new System.Drawing.Size(112, 23);
             this.btnGuest.TabIndex = 6;
             this.btnGuest.Text = "Войти как гость ";
             this.btnGuest.UseVisualStyleBackColor = false;

@@ -15,9 +15,19 @@ namespace WindowsFormsApp1
     public partial class LoginForm : Form
     {
         private Dictionary<string, (string FullName, string Role)> _users;
+        private Color normalColor_ = ColorTranslator.FromHtml("#D2F6E7");
+        private Color enteringColor_ = ColorTranslator.FromHtml("#70B2AF");
         public LoginForm()
         {
             InitializeComponent();
+            foreach (Control c in Controls)
+            {
+                if (c is Button btn)
+                {
+                    btn.MouseEnter += Button_MouseEnter;
+                    btn.MouseLeave += Button_MouseLeave;
+                }
+            }
             LoadUsersData();
             string imagePath = Path.Combine(Application.StartupPath, @"..\\..\\..\\Import\\Чудо Обувь.png");
 
@@ -122,6 +132,21 @@ namespace WindowsFormsApp1
 
                     ApplyButtonStyles(control);
                 }
+            }
+        }
+        private void Button_MouseEnter(object sender, EventArgs e)
+        {
+            if (sender is Button btn)
+            {
+                btn.BackColor = enteringColor_;
+            }
+        }
+
+        private void Button_MouseLeave(object sender, EventArgs e)
+        {
+            if (sender is Button btn)
+            {
+                btn.BackColor = normalColor_;
             }
         }
     }
