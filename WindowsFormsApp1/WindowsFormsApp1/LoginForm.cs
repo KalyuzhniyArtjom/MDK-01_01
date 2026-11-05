@@ -29,7 +29,7 @@ namespace WindowsFormsApp1
                 }
             }
             LoadUsersData();
-            string imagePath = Path.Combine(Application.StartupPath, @"..\\..\\..\\Import\\Чудо Обувь.png");
+            string imagePath = Path.Combine(Application.StartupPath, @"..\\..\\..\\Import\\Чудо Обувь безфона.png");
 
             if (File.Exists(imagePath))
             {

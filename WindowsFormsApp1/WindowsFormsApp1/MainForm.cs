@@ -15,7 +15,7 @@ namespace WindowsFormsApp1
         {
 
             InitializeComponent();
-            string imagePath = Path.Combine(Application.StartupPath, "..\\..\\..\\Import\\Чудо Обувь.png");
+            string imagePath = Path.Combine(Application.StartupPath, "..\\..\\..\\Import\\Чудо Обувь безфона.png");
 
             if (System.IO.File.Exists(imagePath))
             {
