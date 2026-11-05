@@ -59,7 +59,7 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.Location = new System.Drawing.Point(26, 151);
+            this.textBox1.Location = new System.Drawing.Point(15, 123);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(287, 27);
             this.textBox1.TabIndex = 2;
@@ -68,7 +68,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(23, 130);
+            this.label2.Location = new System.Drawing.Point(12, 102);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(105, 18);
             this.label2.TabIndex = 3;
@@ -78,7 +78,7 @@
             // 
             this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnLogin.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnLogin.Location = new System.Drawing.Point(26, 199);
+            this.btnLogin.Location = new System.Drawing.Point(15, 165);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 23);
             this.btnLogin.TabIndex = 4;
@@ -90,7 +90,7 @@
             // 
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnCancel.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnCancel.Location = new System.Drawing.Point(238, 199);
+            this.btnCancel.Location = new System.Drawing.Point(227, 165);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 5;
@@ -102,7 +102,7 @@
             // 
             this.btnGuest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnGuest.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnGuest.Location = new System.Drawing.Point(119, 199);
+            this.btnGuest.Location = new System.Drawing.Point(109, 165);
             this.btnGuest.Name = "btnGuest";
             this.btnGuest.Size = new System.Drawing.Size(102, 23);
             this.btnGuest.TabIndex = 6;
@@ -114,7 +114,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(356, 262);
+            this.ClientSize = new System.Drawing.Size(356, 230);
             this.Controls.Add(this.btnGuest);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnLogin);
