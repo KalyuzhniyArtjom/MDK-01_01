@@ -8,9 +8,11 @@ namespace DemoLib.Models
     {
         private List<Product> data_ = new List<Product>();
         private List<Order> orders_ = new List<Order>();
+        IOrderRepository repository_;
 
-        public ProductsModel()
+        public ProductsModel(IOrderRepository repository)
         {
+            repository_ = repository;
             data_.Add(new Product
             {
                 Name = "Женские нежно-салатовые кроссовки с ортопедической стелькой",
@@ -19,7 +21,7 @@ namespace DemoLib.Models
                 Price = 1300.0,
                 Supplier = "Kari",
                 Parts = " 90% текстиль, 9% Этиленвинилацетат, 1% синтетика",
-                ImagePath = "..\\..\\..\\Images\\IMG_WS_185538.png"
+                ImagePath = "..\\..\\..\\Import\\Images\\IMG_WS_185538.png"
             });
             data_.Add(new Product
             {
@@ -29,7 +31,7 @@ namespace DemoLib.Models
                 Price = 500.0,
                 Supplier = "T-TACCARDI",
                 Parts = "94% натуральная кожа, 6% полиуретан  ",
-                ImagePath = "..\\..\\..\\Images\\IMG_WSd_185551.png"
+                ImagePath = "..\\..\\..\\Import\\Images\\IMG_WSd_185551.png"
             });
             data_.Add(new Product
             {
@@ -39,10 +41,11 @@ namespace DemoLib.Models
                 Price = 900.0,
                 Supplier = "Kari",
                 Parts = "96% натуральная кожа, 4% полиуретан ",
-                ImagePath = "..\\..\\..\\Images\\picture.png"
+                ImagePath = "..\\..\\..\\Import\\Images\\picture.png"
             });
-            
-            Order order_1 = new Order();
+            orders_ = repository_.Load();
+
+            /*Order order_1 = new Order();
             order_1.Items = new List<OrderItem>();
             order_1.Items.Add(new OrderItem
             {
@@ -71,7 +74,7 @@ namespace DemoLib.Models
             
             orders_.Add(order_1);
             orders_.Add(order_2);
-            orders_.Add(order_3);
+            orders_.Add(order_3);*/
 
             UpdatePrices(orders_);
         }

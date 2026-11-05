@@ -1,19 +1,27 @@
 ﻿using DemoLib.Models;
 using DemoLib.Presenters;
+using System.IO;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    // цвета
-    // доп фон #D2F6E7
-    // акцентир #70B2AF
     public partial class MainForm : Form
     {
         private ProductsPresenter productsPresenter_;
-        private ProductsModel model_ = new ProductsModel();
+        private ProductsModel model_;
+
         public MainForm()
         {
             InitializeComponent();
+            string imagePath = Path.Combine(Application.StartupPath, "..\\..\\..\\Import\\Чудо Обувь.png");
+
+            if (System.IO.File.Exists(imagePath))
+            {
+                pictureBox1.Image = System.Drawing.Image.FromFile(imagePath);
+                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom; 
+            }
+            IOrderRepository repository = new MemoryOrderRepository();
+            model_ = new ProductsModel(repository);
 
             productsPresenter_ = new ProductsPresenter(model_);
         }
