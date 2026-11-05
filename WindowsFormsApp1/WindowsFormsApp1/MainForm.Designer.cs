@@ -54,18 +54,18 @@
             this.MainLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainLayout.Location = new System.Drawing.Point(3, 3);
             this.MainLayout.Name = "MainLayout";
-            this.MainLayout.Size = new System.Drawing.Size(920, 450);
+            this.MainLayout.Size = new System.Drawing.Size(920, 449);
             this.MainLayout.TabIndex = 0;
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tabControl1.Location = new System.Drawing.Point(0, 99);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 100);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(934, 482);
+            this.tabControl1.Size = new System.Drawing.Size(934, 481);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -74,7 +74,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(926, 456);
+            this.tabPage1.Size = new System.Drawing.Size(926, 455);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Товар";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -112,7 +112,7 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.panel2.Controls.Add(this.lblUserRole);
             this.panel2.Controls.Add(this.lblUserInfo);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
@@ -162,8 +162,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(934, 581);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.panel1);
             this.MinimumSize = new System.Drawing.Size(920, 620);
             this.Name = "MainForm";
             this.Text = "Магазин";

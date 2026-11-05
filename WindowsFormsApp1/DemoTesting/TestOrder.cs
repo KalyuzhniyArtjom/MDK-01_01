@@ -55,7 +55,6 @@ namespace DemoTesting
             startPrices.Add(500.0);
             startPrices.Add(900.0);
 
-            // ИСПРАВЛЕНИЕ: Берем дату ровно 2 месяца назад от сегодня
             DateTime twoMonthsAgo = DateTime.Now.AddMonths(-2);
 
             Order orderOne = new Order();
