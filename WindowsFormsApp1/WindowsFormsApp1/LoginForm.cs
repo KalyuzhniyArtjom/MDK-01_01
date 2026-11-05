@@ -94,17 +94,6 @@ namespace WindowsFormsApp1
             OpenMainForm();
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            var result = MessageBox.Show("Вы действительно хотите закрыть программу?",
-                "Подтверждение выхода", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
-        }
-
         private void OpenMainForm()
         {
             MainForm mainForm = new MainForm();

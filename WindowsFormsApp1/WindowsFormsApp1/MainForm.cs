@@ -13,6 +13,8 @@ namespace WindowsFormsApp1
         public MainForm()
         {
             InitializeComponent();
+            panel1.BackColor = System.Drawing.ColorTranslator.FromHtml("#D2F6E7");
+            panel2.BackColor = System.Drawing.ColorTranslator.FromHtml("#D2F6E7");
             string imagePath = Path.Combine(Application.StartupPath, "..\\..\\..\\Import\\Чудо Обувь.png");
 
             if (System.IO.File.Exists(imagePath))
@@ -47,6 +49,11 @@ namespace WindowsFormsApp1
             }
 
             productsPresenter_.Update();
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

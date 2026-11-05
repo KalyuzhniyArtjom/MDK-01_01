@@ -167,6 +167,7 @@
             this.MinimumSize = new System.Drawing.Size(920, 620);
             this.Name = "MainForm";
             this.Text = "Магазин";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
