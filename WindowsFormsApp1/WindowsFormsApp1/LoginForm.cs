@@ -56,7 +56,7 @@ namespace WindowsFormsApp1
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string enteredLogin = textBox1.Text.Trim(); 
+            string enteredLogin = textBox1.Text.Trim();
 
             if (string.IsNullOrEmpty(enteredLogin))
             {
@@ -98,7 +98,31 @@ namespace WindowsFormsApp1
         {
             MainForm mainForm = new MainForm();
             mainForm.Show();
-            this.Hide(); 
+            this.Hide();
+        }
+        private void ApplyButtonStyles(Control parent)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                if (control is Button btn)
+                {
+                    btn.BackColor = System.Drawing.ColorTranslator.FromHtml("#70B2AF");
+
+                    btn.FlatStyle = FlatStyle.Flat;
+                    btn.FlatAppearance.BorderSize = 0;
+                    btn.ForeColor = System.Drawing.Color.White;
+                    btn.Font = new Font(btn.Font, FontStyle.Bold);
+
+                    btn.FlatAppearance.MouseOverBackColor = System.Drawing.ColorTranslator.FromHtml("#559E9A");
+
+                    btn.FlatAppearance.MouseDownBackColor = System.Drawing.ColorTranslator.FromHtml("#3D7B78");
+                }
+                else if (control.HasChildren)
+                {
+
+                    ApplyButtonStyles(control);
+                }
+            }
         }
     }
 }
