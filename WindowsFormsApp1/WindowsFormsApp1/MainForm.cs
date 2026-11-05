@@ -12,6 +12,7 @@ namespace WindowsFormsApp1
 
         public MainForm()
         {
+
             InitializeComponent();
             panel1.BackColor = System.Drawing.ColorTranslator.FromHtml("#D2F6E7");
             panel2.BackColor = System.Drawing.ColorTranslator.FromHtml("#D2F6E7");
