@@ -17,6 +17,7 @@ namespace WindowsFormsApp1
         public LoginForm()
         {
             InitializeComponent();
+            LoadUsersData();
         }
         private void LoadUsersData()
         {
@@ -104,7 +105,3 @@ namespace WindowsFormsApp1
         }
     }
 }
-
-
-
-
