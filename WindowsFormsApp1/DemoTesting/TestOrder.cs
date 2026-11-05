@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DemoLib.Models;
 using DemoLib;
+using System;
 using System.Collections.Generic;
 
 namespace DemoTesting
@@ -54,13 +55,16 @@ namespace DemoTesting
             startPrices.Add(500.0);
             startPrices.Add(900.0);
 
+            // ИСПРАВЛЕНИЕ: Берем дату ровно 2 месяца назад от сегодня
+            DateTime twoMonthsAgo = DateTime.Now.AddMonths(-2);
+
             Order orderOne = new Order();
             orderOne.Items = new List<OrderItem>();
             orderOne.Items.Add(new OrderItem
             {
                 ProductItem = "Женские нежно-салатовые кроссовки с ортопедической стелькой",
                 Count = 10,
-                SaleDate = new System.DateTime(2026, 10, 15)
+                SaleDate = twoMonthsAgo
             });
 
             List<Order> orderList = new List<Order>();
@@ -68,8 +72,6 @@ namespace DemoTesting
 
             model.UpdatePrices(orderList);
 
-            // ИСПРАВЛЕНО: Кроссовки куплены не в прошлом месяце, значит получают скидку.
-            // Цена меняется, поэтому проверяем, что она НЕ равна старой.
             Assert.AreNotEqual(startPrices[0], productsList[0].Price);
             Assert.AreNotEqual(startPrices[1], productsList[1].Price);
             Assert.AreNotEqual(startPrices[2], productsList[2].Price);
@@ -110,13 +112,16 @@ namespace DemoTesting
             startPrices.Add(1300.0);
             startPrices.Add(500.0);
 
+            // ИСПРАВЛЕНИЕ: Берем дату ровно 1 месяц назад от сегодня
+            DateTime oneMonthAgo = DateTime.Now.AddMonths(-1);
+
             Order orderOne = new Order();
             orderOne.Items = new List<OrderItem>();
             orderOne.Items.Add(new OrderItem
             {
                 ProductItem = "Женские нежно-салатовые кроссовки с ортопедической стелькой",
                 Count = 10,
-                SaleDate = new System.DateTime(2026, 9, 10)
+                SaleDate = oneMonthAgo
             });
 
             Order orderTwo = new Order();
@@ -125,7 +130,7 @@ namespace DemoTesting
             {
                 ProductItem = "Женские белые босоножки с широким каблуком среднего размера",
                 Count = 10,
-                SaleDate = new System.DateTime(2026, 9, 10)
+                SaleDate = oneMonthAgo
             });
 
             List<Order> orderList = new List<Order>();
@@ -184,13 +189,16 @@ namespace DemoTesting
             expectedPrices.Add(500.0);
             expectedPrices.Add(675.0);
 
+            // ИСПРАВЛЕНИЕ: Берем дату 1 месяц назад (чтобы сработала скидка на 25% для первой и третьей)
+            DateTime oneMonthAgo = DateTime.Now.AddMonths(-1);
+
             Order orderOne = new Order();
             orderOne.Items = new List<OrderItem>();
             orderOne.Items.Add(new OrderItem
             {
                 ProductItem = "Женские белые босоножки с широким каблуком среднего размера",
                 Count = 10,
-                SaleDate = new System.DateTime(2026, 9, 10)
+                SaleDate = oneMonthAgo
             });
 
             List<Order> orderList = new List<Order>();
@@ -277,13 +285,15 @@ namespace DemoTesting
             List<double> expectedPrices = new List<double>();
             expectedPrices.Add(1300.0);
 
+            DateTime firstDayOfLastMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(-1);
+
             Order orderOne = new Order();
             orderOne.Items = new List<OrderItem>();
             orderOne.Items.Add(new OrderItem
             {
                 ProductItem = "Женские нежно-салатовые кроссовки с ортопедической стелькой",
                 Count = 10,
-                SaleDate = new System.DateTime(2026, 9, 1)
+                SaleDate = firstDayOfLastMonth
             });
 
             List<Order> orderList = new List<Order>();
