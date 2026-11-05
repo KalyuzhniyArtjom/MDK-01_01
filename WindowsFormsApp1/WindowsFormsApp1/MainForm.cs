@@ -2,6 +2,7 @@
 using DemoLib.Presenters;
 using System.IO;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace WindowsFormsApp1
 {
@@ -38,6 +39,12 @@ namespace WindowsFormsApp1
             if (lblUserRole != null)
             {
                 lblUserRole.Text = AuthUser.Role;
+            }
+            string avatarPath = Path.Combine(Application.StartupPath, @"..\\..\\..\\Import\\Заглушка фото профиля безфона.png");
+
+            if (File.Exists(avatarPath))
+            {
+                pictureBox2.Image = Image.FromFile(avatarPath);
             }
             int countProducts = model_.GetCountProducts();
             for (int i = 0; i < countProducts; i++)
