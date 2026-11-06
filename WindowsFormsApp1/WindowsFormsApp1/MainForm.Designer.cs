@@ -162,9 +162,9 @@
             this.panel2.Controls.Add(this.lblUserInfo);
             this.panel2.Controls.Add(this.pictureBox2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(618, 0);
+            this.panel2.Location = new System.Drawing.Point(556, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(316, 100);
+            this.panel2.Size = new System.Drawing.Size(378, 100);
             this.panel2.TabIndex = 2;
             // 
             // pictureBox2
