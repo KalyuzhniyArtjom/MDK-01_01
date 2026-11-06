@@ -32,6 +32,9 @@
             this.MainLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.FitersPanel = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.PriceSortingComboBox = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -41,17 +44,16 @@
             this.lblUserInfo = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.FitersPanel = new System.Windows.Forms.Panel();
-            this.PriceSortingComboBox = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.SearchTextBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.FitersPanel.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.FitersPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainLayout
@@ -86,6 +88,41 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Товар";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // FitersPanel
+            // 
+            this.FitersPanel.Controls.Add(this.label3);
+            this.FitersPanel.Controls.Add(this.SearchTextBox);
+            this.FitersPanel.Controls.Add(this.label2);
+            this.FitersPanel.Controls.Add(this.PriceSortingComboBox);
+            this.FitersPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.FitersPanel.Location = new System.Drawing.Point(3, 3);
+            this.FitersPanel.Name = "FitersPanel";
+            this.FitersPanel.Size = new System.Drawing.Size(920, 100);
+            this.FitersPanel.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(28, 36);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(48, 19);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Цена:";
+            // 
+            // PriceSortingComboBox
+            // 
+            this.PriceSortingComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.PriceSortingComboBox.FormattingEnabled = true;
+            this.PriceSortingComboBox.Items.AddRange(new object[] {
+            "по возрастанию",
+            "по убыванию"});
+            this.PriceSortingComboBox.Location = new System.Drawing.Point(82, 36);
+            this.PriceSortingComboBox.Name = "PriceSortingComboBox";
+            this.PriceSortingComboBox.Size = new System.Drawing.Size(164, 24);
+            this.PriceSortingComboBox.TabIndex = 0;
+            this.PriceSortingComboBox.SelectedIndexChanged += new System.EventHandler(this.PriceSortingComboBox_SelectedIndexChanged);
             // 
             // tabPage2
             // 
@@ -175,38 +212,24 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // FitersPanel
+            // SearchTextBox
             // 
-            this.FitersPanel.Controls.Add(this.label2);
-            this.FitersPanel.Controls.Add(this.PriceSortingComboBox);
-            this.FitersPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.FitersPanel.Location = new System.Drawing.Point(3, 3);
-            this.FitersPanel.Name = "FitersPanel";
-            this.FitersPanel.Size = new System.Drawing.Size(920, 100);
-            this.FitersPanel.TabIndex = 1;
+            this.SearchTextBox.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SearchTextBox.Location = new System.Drawing.Point(673, 36);
+            this.SearchTextBox.Name = "SearchTextBox";
+            this.SearchTextBox.Size = new System.Drawing.Size(176, 23);
+            this.SearchTextBox.TabIndex = 2;
+            this.SearchTextBox.TextChanged += new System.EventHandler(this.SearchTextBox_TextChanged);
             // 
-            // PriceSortingComboBox
+            // label3
             // 
-            this.PriceSortingComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.PriceSortingComboBox.FormattingEnabled = true;
-            this.PriceSortingComboBox.Items.AddRange(new object[] {
-            "по возрастанию",
-            "по убыванию"});
-            this.PriceSortingComboBox.Location = new System.Drawing.Point(82, 36);
-            this.PriceSortingComboBox.Name = "PriceSortingComboBox";
-            this.PriceSortingComboBox.Size = new System.Drawing.Size(164, 24);
-            this.PriceSortingComboBox.TabIndex = 0;
-            this.PriceSortingComboBox.SelectedIndexChanged += new System.EventHandler(this.PriceSortingComboBox_SelectedIndexChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(28, 36);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 19);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Цена:";
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(613, 37);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(54, 19);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Поиск:";
             // 
             // MainForm
             // 
@@ -223,6 +246,8 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.FitersPanel.ResumeLayout(false);
+            this.FitersPanel.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -230,8 +255,6 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.FitersPanel.ResumeLayout(false);
-            this.FitersPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -253,6 +276,8 @@
         private System.Windows.Forms.Panel FitersPanel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox PriceSortingComboBox;
+        private System.Windows.Forms.TextBox SearchTextBox;
+        private System.Windows.Forms.Label label3;
     }
 }
 

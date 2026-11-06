@@ -82,6 +82,10 @@ namespace DemoUIComponents
             BackColor = GetColor();
 
         }
+        public void SetVisible(bool visible)
+        {
+            this.Visible = visible;
+        }
 
         /*
         private void ProductCard_Paint(object sender, PaintEventArgs e)

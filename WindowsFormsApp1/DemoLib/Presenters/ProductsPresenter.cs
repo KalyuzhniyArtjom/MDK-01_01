@@ -46,16 +46,61 @@ namespace DemoLib.Presenters
             }
             Update(allProducts);
         }
+        public void Search(string searchText)
+        {
+            List<Product> allProducts = model_.Load();
+
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                Update(allProducts);
+                return;
+            }
+
+            List<Product> filteredProducts = new List<Product>();
+            string lowerText = searchText.ToLower();
+
+            foreach (Product product in allProducts)
+            {
+                bool matchName = false;
+                bool matchDesc = false;
+
+                if (product.Name != null && product.Name.ToLower().Contains(lowerText))
+                {
+                    matchName = true;
+                }
+
+                if (product.Parts != null && product.Parts.ToLower().Contains(lowerText))
+                {
+                    matchDesc = true;
+                }
+
+                if (matchName || matchDesc)
+                {
+                    filteredProducts.Add(product);
+                }
+            }
+
+            Update(filteredProducts);
+        }
 
         public void Update(List<Product> products)
         {
+            foreach (IProductsView view in views_)
+            {
+                view.SetVisible(false);
+            }
 
             for (int i = 0; i < products.Count; i++)
             {
-                Product product = products[i];
-                IProductsView view = views_[i];
 
-                view.Show(product);
+
+                if (i >= views_.Count)
+                {
+                    break;
+                }
+
+                views_[i].Show(products[i]);
+                views_[i].SetVisible(true);
             }
         }
     }

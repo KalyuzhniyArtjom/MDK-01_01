@@ -77,5 +77,10 @@ namespace WindowsFormsApp1
             SortOrder sortingOrder = (SortOrder)PriceSortingComboBox.SelectedIndex;
             productsPresenter_.SortByPrice(sortingOrder);
         }
+
+        private void SearchTextBox_TextChanged(object sender, System.EventArgs e)
+        {
+            productsPresenter_.Search(SearchTextBox.Text);
+        }
     }
 }
