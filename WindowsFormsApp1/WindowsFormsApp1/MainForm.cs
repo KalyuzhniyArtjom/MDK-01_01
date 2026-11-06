@@ -73,6 +73,7 @@ namespace WindowsFormsApp1
             {
                 return;
             }
+
             SortOrder sortingOrder = (SortOrder)PriceSortingComboBox.SelectedIndex;
             productsPresenter_.SortByPrice(sortingOrder);
         }
