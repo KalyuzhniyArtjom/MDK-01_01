@@ -157,19 +157,20 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(246)))), ((int)(((byte)(231)))));
-            this.panel2.Controls.Add(this.pictureBox2);
+            this.panel2.BackColor = System.Drawing.Color.SteelBlue;
             this.panel2.Controls.Add(this.lblUserRole);
             this.panel2.Controls.Add(this.lblUserInfo);
+            this.panel2.Controls.Add(this.pictureBox2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(566, 0);
+            this.panel2.Location = new System.Drawing.Point(618, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(368, 100);
+            this.panel2.Size = new System.Drawing.Size(316, 100);
             this.panel2.TabIndex = 2;
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(34, -8);
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Location = new System.Drawing.Point(-11, -8);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(131, 108);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -180,19 +181,21 @@
             // 
             this.lblUserRole.AutoSize = true;
             this.lblUserRole.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblUserRole.Location = new System.Drawing.Point(166, 27);
+            this.lblUserRole.Location = new System.Drawing.Point(101, 47);
             this.lblUserRole.Name = "lblUserRole";
-            this.lblUserRole.Size = new System.Drawing.Size(0, 15);
+            this.lblUserRole.Size = new System.Drawing.Size(34, 15);
             this.lblUserRole.TabIndex = 1;
+            this.lblUserRole.Text = "роль";
             // 
             // lblUserInfo
             // 
             this.lblUserInfo.AutoSize = true;
-            this.lblUserInfo.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblUserInfo.Location = new System.Drawing.Point(165, 9);
+            this.lblUserInfo.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblUserInfo.Location = new System.Drawing.Point(100, 24);
             this.lblUserInfo.Name = "lblUserInfo";
-            this.lblUserInfo.Size = new System.Drawing.Size(0, 19);
+            this.lblUserInfo.Size = new System.Drawing.Size(48, 23);
             this.lblUserInfo.TabIndex = 0;
+            this.lblUserInfo.Text = "ФИО";
             // 
             // label1
             // 
