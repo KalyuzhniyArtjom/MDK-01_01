@@ -20,12 +20,39 @@ namespace DemoLib.Presenters
             views_.Add(view);
         }
 
-        public void Update()
+        public void SortByPrice(SortOrder sortingOrder)
         {
             List<Product> allProducts = model_.Load();
-            for (int i = 0; i < allProducts.Count; i++)
+
+            if (sortingOrder == SortOrder.Ascending)
             {
-                Product product = allProducts[i];
+                allProducts.Sort(delegate (Product x, Product y)
+
+                {
+                    if (x.Price < y.Price) return -1;
+                    if (x.Price > y.Price) return 1;
+                    return 0;
+                });
+            }
+            else
+            {
+                allProducts.Sort(delegate (Product x, Product y)
+
+                {
+                    if (x.Price < y.Price) return 1;
+                    if (x.Price > y.Price) return -1;
+                    return 0;
+                });
+            }
+            Update(allProducts);
+        }
+
+        public void Update(List<Product> products)
+        {
+
+            for (int i = 0; i < products.Count; i++)
+            {
+                Product product = products[i];
                 IProductsView view = views_[i];
 
                 view.Show(product);

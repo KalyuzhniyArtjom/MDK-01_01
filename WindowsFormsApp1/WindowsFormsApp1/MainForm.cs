@@ -1,8 +1,12 @@
-﻿using DemoLib.Models;
+﻿using DemoLib;
+using DemoLib.Models;
 using DemoLib.Presenters;
+using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using System.Drawing;
+using SortOrder = DemoLib.SortOrder;
+
 
 namespace WindowsFormsApp1
 {
@@ -55,17 +59,22 @@ namespace WindowsFormsApp1
                 productsPresenter_.AddView(card);
             }
 
-            productsPresenter_.Update();
+            List<Product> products = model_.Load();
+            productsPresenter_.Update(products);
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
+        private void PriceSortingComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-
+            if (PriceSortingComboBox.SelectedIndex < 0)
+            {
+                return;
+            }
+            SortOrder sortingOrder = (SortOrder)PriceSortingComboBox.SelectedIndex;
+            productsPresenter_.SortByPrice(sortingOrder);
         }
     }
 }
