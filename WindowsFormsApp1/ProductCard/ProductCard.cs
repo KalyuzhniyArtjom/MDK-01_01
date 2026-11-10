@@ -16,7 +16,8 @@ namespace DemoUIComponents
         public ProductCard()
         {
             InitializeComponent();
-            foreach(Control c in Controls)
+            this.DoubleBuffered = true;
+            foreach (Control c in Controls)
             {
                 c.MouseMove += ProductCard_MouseMove;
                 c.MouseLeave += ProductCard_MouseLeave;
