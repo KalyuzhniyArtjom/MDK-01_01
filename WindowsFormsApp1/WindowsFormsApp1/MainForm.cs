@@ -20,6 +20,8 @@ namespace WindowsFormsApp1
         {
 
             InitializeComponent();
+            typeof(Control).GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
+    .SetValue(MainLayout, true, null);
             string imagePath = Path.Combine(Application.StartupPath, "..\\..\\..\\Import\\Чудо Обувь безфона.png");
 
             if (System.IO.File.Exists(imagePath))
