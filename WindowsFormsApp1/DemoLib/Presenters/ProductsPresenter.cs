@@ -49,7 +49,21 @@ namespace DemoLib.Presenters
         public void Search(string searchText)
         {
             List<Product> allProducts = model_.Load();
+            bool hasDigits = false;
+            foreach (char c in searchText)
+            {
+                if (char.IsDigit(c))
+                {
+                    hasDigits = true;
+                    break;
+                }
+            }
 
+            if (hasDigits)
+            {
+                Update(allProducts); 
+                return;
+            }
             if (string.IsNullOrWhiteSpace(searchText))
             {
                 Update(allProducts);
