@@ -13,71 +13,17 @@ namespace DemoLib.Models
         public ProductsModel(IOrderRepository repository)
         {
             repository_ = repository;
-            data_.Add(new Product
-            {
-                Name = "Женские нежно-салатовые кроссовки с ортопедической стелькой",
-                Category = "Кроссовки",
-                Count = 10,
-                Price = 1300.0,
-                Supplier = "Kari",
-                Parts = " 90% текстиль, 9% Этиленвинилацетат, 1% синтетика",
-                ImagePath = "..\\..\\..\\Import\\Images\\IMG_WS_185538.png"
-            });
-            data_.Add(new Product
-            {
-                Name = "Женские белые босоножки с широким каблуком среднего размера",
-                Category = "Туфли",
-                Count = 2,
-                Price = 500.0,
-                Supplier = "T-TACCARDI",
-                Parts = "94% натуральная кожа, 6% полиуретан  ",
-                ImagePath = "..\\..\\..\\Import\\Images\\IMG_WSd_185551.png"
-            });
-            data_.Add(new Product
-            {
-                Name = "Женские классические туфли на шпильке",
-                Category = "Туфли",
-                Count = 7,
-                Price = 900.0,
-                Supplier = "Kari",
-                Parts = "96% натуральная кожа, 4% полиуретан ",
-                ImagePath = "..\\..\\..\\Import\\Images\\picture.png"
-            });
+
+            // 1. Загружаем товары из базы данных (а не из памяти!)
+            data_ = repository_.LoadProducts();
+
+            // 2. Загружаем заказы (пока что вернется пустой список, так как метод-заглушка)
             orders_ = repository_.Load();
 
-            /*Order order_1 = new Order();
-            order_1.Items = new List<OrderItem>();
-            order_1.Items.Add(new OrderItem
-            {
-                ProductItem = "Женские нежно-салатовые кроссовки с ортопедической стелькой",
-                Count = 10,
-                SaleDate = new System.DateTime(2026, 8, 10)
-            });
-            
-            Order order_2 = new Order();
-            order_2.Items = new List<OrderItem>();
-            order_2.Items.Add(new OrderItem
-            {
-                ProductItem = "Женские белые босоножки с широким каблуком среднего размера",
-                Count = 10,
-                SaleDate = new System.DateTime(2026, 9, 10)
-            });
-            
-            Order order_3 = new Order();
-            order_3.Items = new List<OrderItem>();
-            order_3.Items.Add(new OrderItem
-            {
-                ProductItem = "Женские классические туфли на шпильке",
-                Count = 10,
-                SaleDate = new System.DateTime(2026, 10, 10)
-            });
-            
-            orders_.Add(order_1);
-            orders_.Add(order_2);
-            orders_.Add(order_3);*/
-
+            // 3. Пересчитываем скидки (если есть заказы за прошлый месяц)
             UpdatePrices(orders_);
         }
+
         public void UpdateListModel(List<Product> newProducts)
         {
             if (newProducts == null)
@@ -107,11 +53,12 @@ namespace DemoLib.Models
 
         public void UpdatePrices(List<Order> orders)
         {
-            DateTime current = DateTime.Now; // 10.10.2026
-            DateTime prevMonthsDate = current.AddMonths(-1); // 10.09.2026
-            DateTime start = new DateTime(prevMonthsDate.Year, prevMonthsDate.Month, 1); // 01.09.2026
+            DateTime current = DateTime.Now;
+            DateTime prevMonthsDate = current.AddMonths(-1);
+            DateTime start = new DateTime(prevMonthsDate.Year, prevMonthsDate.Month, 1);
             DateTime end = new DateTime(prevMonthsDate.Year, prevMonthsDate.Month + 1, 1).AddDays(-1);
 
+            // Если список заказов пустой, то скидку получают все товары
             List<Product> discountProducts = data_
                .Where(product => !orders
                    .SelectMany(order => order.Items)

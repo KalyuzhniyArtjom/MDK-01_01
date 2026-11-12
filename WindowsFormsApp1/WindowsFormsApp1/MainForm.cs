@@ -30,7 +30,7 @@ namespace WindowsFormsApp1
                 pictureBox1.Image = System.Drawing.Image.FromFile(imagePath);
                 pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             }
-            IOrderRepository repository = new MemoryOrderRepository();
+            IOrderRepository repository = new PostgresOrderRepository();
             model_ = new ProductsModel(repository);
 
             productsPresenter_ = new ProductsPresenter(model_);

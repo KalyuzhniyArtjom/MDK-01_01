@@ -1,11 +1,12 @@
 ﻿using DemoLib;
 using DemoLib.Views;
 using System.Drawing;
+using System.IO; // Добавили для работы с файлами
 using System.Windows.Forms;
 
 namespace DemoUIComponents
 {
-    public partial class ProductCard: UserControl, IProductsView
+    public partial class ProductCard : UserControl, IProductsView
     {
         private Product product_;
 
@@ -22,7 +23,6 @@ namespace DemoUIComponents
                 c.MouseMove += ProductCard_MouseMove;
                 c.MouseLeave += ProductCard_MouseLeave;
             }
-            
         }
 
         private string CountText()
@@ -31,18 +31,31 @@ namespace DemoUIComponents
             {
                 return product_.Count.ToString() + " (много)";
             }
-
             return product_.Count.ToString() + " (мало)";
         }
 
+        // Исправленный метод получения пути к картинке
         private string ImagePath()
         {
-            if (product_.ImagePath == "" || product_.ImagePath == null)
+            // Базовая папка с картинками
+            string basePath = Path.Combine(Application.StartupPath, @"..\..\..\Import\Images\");
+
+            // Если в базе пусто - показываем заглушку
+            if (string.IsNullOrEmpty(product_.ImagePath))
             {
-                return "..\\..\\..\\Images\\picture.png";
+                return Path.Combine(basePath, "picture.png");
             }
 
-            return product_.ImagePath;
+            // Склеиваем путь и имя файла из базы
+            string fullPath = Path.Combine(basePath, product_.ImagePath);
+
+            // Если файла нет - показываем заглушку
+            if (!File.Exists(fullPath))
+            {
+                return Path.Combine(basePath, "picture.png");
+            }
+
+            return fullPath;
         }
 
         private Color GetColor()
@@ -51,7 +64,6 @@ namespace DemoUIComponents
             {
                 return deficitColor_;
             }
-
             return normalColor_;
         }
 
@@ -60,17 +72,16 @@ namespace DemoUIComponents
             product_ = product;
 
             CategoryLabel.Text = product.Category;
-
             CountLabel.Text = CountText();
-
             PartsLabel.Text = product.Parts;
-            PriceProductLabel.Text = product.Price.ToString() + " руб.";
-            SupplierLabel.Text = product.Supplier + " | " + product.Name; 
 
-            ImagePictureBox.ImageLocation = ImagePath();
+            PriceProductLabel.Text = product.Price.ToString("0.##") + " руб.";
+            SupplierLabel.Text = product.Supplier + " | " + product.Name;
+
+            string finalPath = ImagePath();
+            ImagePictureBox.ImageLocation = finalPath;
 
             BackColor = GetColor();
-
         }
 
         private void ProductCard_MouseMove(object sender, MouseEventArgs e)
@@ -81,20 +92,11 @@ namespace DemoUIComponents
         private void ProductCard_MouseLeave(object sender, System.EventArgs e)
         {
             BackColor = GetColor();
-
         }
+
         public void SetVisible(bool visible)
         {
             this.Visible = visible;
         }
-
-        /*
-        private void ProductCard_Paint(object sender, PaintEventArgs e)
-        {
-            ControlPaint.DrawBorder(e.Graphics, ClientRectangle, Color.Black, ButtonBorderStyle.Solid);
-        }
-        */
-
-
     }
 }

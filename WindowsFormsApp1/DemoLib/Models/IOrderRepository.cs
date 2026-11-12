@@ -9,5 +9,6 @@ namespace DemoLib.Models
     public interface IOrderRepository
     {
         List<Order> Load();
+        List<Product> LoadProducts();
     }
 }
