@@ -46,6 +46,8 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.CategoryComboBox = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.FitersPanel.SuspendLayout();
@@ -91,6 +93,8 @@
             // 
             // FitersPanel
             // 
+            this.FitersPanel.Controls.Add(this.label4);
+            this.FitersPanel.Controls.Add(this.CategoryComboBox);
             this.FitersPanel.Controls.Add(this.label3);
             this.FitersPanel.Controls.Add(this.SearchTextBox);
             this.FitersPanel.Controls.Add(this.label2);
@@ -105,7 +109,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(613, 37);
+            this.label3.Location = new System.Drawing.Point(615, 12);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 19);
             this.label3.TabIndex = 3;
@@ -114,7 +118,7 @@
             // SearchTextBox
             // 
             this.SearchTextBox.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SearchTextBox.Location = new System.Drawing.Point(673, 36);
+            this.SearchTextBox.Location = new System.Drawing.Point(675, 12);
             this.SearchTextBox.Name = "SearchTextBox";
             this.SearchTextBox.Size = new System.Drawing.Size(176, 23);
             this.SearchTextBox.TabIndex = 2;
@@ -234,6 +238,30 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // CategoryComboBox
+            // 
+            this.CategoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CategoryComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CategoryComboBox.FormattingEnabled = true;
+            this.CategoryComboBox.Items.AddRange(new object[] {
+            "по возрастанию",
+            "по убыванию"});
+            this.CategoryComboBox.Location = new System.Drawing.Point(675, 50);
+            this.CategoryComboBox.Name = "CategoryComboBox";
+            this.CategoryComboBox.Size = new System.Drawing.Size(176, 24);
+            this.CategoryComboBox.TabIndex = 4;
+            this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(573, 51);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(96, 19);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Фильтрация:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -281,6 +309,8 @@
         private System.Windows.Forms.ComboBox PriceSortingComboBox;
         private System.Windows.Forms.TextBox SearchTextBox;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox CategoryComboBox;
     }
 }
 

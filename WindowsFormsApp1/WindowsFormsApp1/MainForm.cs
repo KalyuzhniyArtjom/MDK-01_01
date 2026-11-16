@@ -7,7 +7,6 @@ using System.IO;
 using System.Windows.Forms;
 using SortOrder = DemoLib.SortOrder;
 
-
 namespace WindowsFormsApp1
 {
     public partial class MainForm : Form
@@ -15,10 +14,8 @@ namespace WindowsFormsApp1
         private ProductsPresenter productsPresenter_;
         private ProductsModel model_;
 
-
         public MainForm()
         {
-
             InitializeComponent();
             typeof(Control).GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
                 .SetValue(MainLayout, true, null);
@@ -55,7 +52,6 @@ namespace WindowsFormsApp1
                 pictureBox2.Image = Image.FromFile(avatarPath);
             }
 
-
             if (AuthUser.Role == "Гость")
             {
                 SearchTextBox.Enabled = false;
@@ -63,7 +59,6 @@ namespace WindowsFormsApp1
                 SearchTextBox.BackColor = Color.LightGray;
                 PriceSortingComboBox.BackColor = Color.LightGray;
             }
-
 
             int countProducts = model_.GetCountProducts();
             for (int i = 0; i < countProducts; i++)
@@ -76,6 +71,19 @@ namespace WindowsFormsApp1
 
             List<Product> products = model_.Load();
             productsPresenter_.Update(products);
+
+            // Заполняем ComboBox категориями
+            CategoryComboBox.Items.Clear();
+            CategoryComboBox.Items.Add("Все категории"); // Первый элемент
+
+            foreach (Product p in products)
+            {
+                if (!CategoryComboBox.Items.Contains(p.Category))
+                {
+                    CategoryComboBox.Items.Add(p.Category);
+                }
+            }
+            CategoryComboBox.SelectedIndex = 0; // Выбираем "Все категории"
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -85,25 +93,28 @@ namespace WindowsFormsApp1
 
         private void PriceSortingComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            if (PriceSortingComboBox.SelectedIndex < 0)
-            {
-                return;
-            }
+            if (PriceSortingComboBox.SelectedIndex < 0) return;
 
             MainLayout.SuspendLayout();
-
             SortOrder sortingOrder = (SortOrder)PriceSortingComboBox.SelectedIndex;
             productsPresenter_.SortByPrice(sortingOrder);
-
             MainLayout.ResumeLayout(true);
         }
 
+        // --- ВЫЗОВ ФИЛЬТРА ПРИ СМЕНЕ КАТЕГОРИИ ---
+        private void CategoryComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            MainLayout.SuspendLayout();
+            string selectedCategory = CategoryComboBox.SelectedItem?.ToString();
+            productsPresenter_.ApplyFilter(selectedCategory);
+            MainLayout.ResumeLayout(true);
+        }
+
+        // --- ВЫЗОВ ПОИСКА ПРИ ВВОДЕ ТЕКСТА ---
         private void SearchTextBox_TextChanged(object sender, System.EventArgs e)
         {
             MainLayout.SuspendLayout();
-
-            productsPresenter_.Search(SearchTextBox.Text);
-
+            productsPresenter_.ApplySearch(SearchTextBox.Text);
             MainLayout.ResumeLayout(true);
         }
     }
