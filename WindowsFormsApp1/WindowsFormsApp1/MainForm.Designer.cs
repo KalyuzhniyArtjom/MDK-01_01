@@ -33,6 +33,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.FitersPanel = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.CategoryComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.SearchTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -46,8 +48,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.CategoryComboBox = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.OrdersGrid = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.FitersPanel.SuspendLayout();
@@ -56,6 +57,7 @@
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OrdersGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // MainLayout
@@ -105,6 +107,30 @@
             this.FitersPanel.Size = new System.Drawing.Size(920, 100);
             this.FitersPanel.TabIndex = 1;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(573, 51);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(96, 19);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Фильтрация:";
+            // 
+            // CategoryComboBox
+            // 
+            this.CategoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CategoryComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CategoryComboBox.FormattingEnabled = true;
+            this.CategoryComboBox.Items.AddRange(new object[] {
+            "по возрастанию",
+            "по убыванию"});
+            this.CategoryComboBox.Location = new System.Drawing.Point(675, 50);
+            this.CategoryComboBox.Name = "CategoryComboBox";
+            this.CategoryComboBox.Size = new System.Drawing.Size(176, 24);
+            this.CategoryComboBox.TabIndex = 4;
+            this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -149,6 +175,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.OrdersGrid);
             this.tabPage2.Controls.Add(this.flowLayoutPanel1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
@@ -238,29 +265,20 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // CategoryComboBox
+            // OrdersGrid
             // 
-            this.CategoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CategoryComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CategoryComboBox.FormattingEnabled = true;
-            this.CategoryComboBox.Items.AddRange(new object[] {
-            "по возрастанию",
-            "по убыванию"});
-            this.CategoryComboBox.Location = new System.Drawing.Point(675, 50);
-            this.CategoryComboBox.Name = "CategoryComboBox";
-            this.CategoryComboBox.Size = new System.Drawing.Size(176, 24);
-            this.CategoryComboBox.TabIndex = 4;
-            this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(573, 51);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(96, 19);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Фильтрация:";
+            this.OrdersGrid.AllowUserToAddRows = false;
+            this.OrdersGrid.BackgroundColor = System.Drawing.Color.White;
+            this.OrdersGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.OrdersGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.OrdersGrid.Location = new System.Drawing.Point(3, 3);
+            this.OrdersGrid.MultiSelect = false;
+            this.OrdersGrid.Name = "OrdersGrid";
+            this.OrdersGrid.ReadOnly = true;
+            this.OrdersGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.OrdersGrid.Size = new System.Drawing.Size(920, 449);
+            this.OrdersGrid.TabIndex = 0;
+            this.OrdersGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OrdersGrid_CellDoubleClick);
             // 
             // MainForm
             // 
@@ -286,6 +304,7 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OrdersGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -311,6 +330,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox CategoryComboBox;
+        private System.Windows.Forms.DataGridView OrdersGrid;
     }
 }
 

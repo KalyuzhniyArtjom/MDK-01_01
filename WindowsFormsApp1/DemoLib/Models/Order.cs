@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DemoLib.Models
 {
@@ -6,6 +7,8 @@ namespace DemoLib.Models
     {
         public List<OrderItem> Items { get; set; }
 
-        public int Id { get; set; }   
+        public int Id { get; set; }
+        public DateTime OrderDate { get; set; }
+        public string UserFullName { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace DemoLib.Models
     {
         private string connectionString = "Host=localhost;Port=5432;Username=postgres;Password=1991;Database=Demo_Bashmak";
 
-        // 1. Метод для загрузки ТОВАРОВ (тот, что мы написали)
+        // 1. Метод для загрузки ТОВАРОВ
         public List<Product> LoadProducts()
         {
             List<Product> products = new List<Product>();
@@ -45,10 +45,64 @@ namespace DemoLib.Models
             return products;
         }
 
-        // 2. Метод для загрузки ЗАКАЗОВ (заглушка, чтобы интерфейс был реализован)
+        // 2. Метод для загрузки ЗАКАЗОВ
         public List<Order> Load()
         {
-            return new List<Order>();
+            List<Order> orders = new List<Order>();
+
+            using (var conn = new NpgsqlConnection(connectionString))
+            {
+                conn.Open();
+
+                // Шаг 1: Загружаем сами заказы (шапку)
+                string sqlOrders = "SELECT order_id, order_date, user_full_name FROM orders ORDER BY order_id";
+
+                using (var cmd = new NpgsqlCommand(sqlOrders, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        orders.Add(new Order
+                        {
+                            Id = reader.GetInt32(0),
+                            OrderDate = reader.GetDateTime(1),
+                            UserFullName = reader.GetString(2),
+                            Items = new List<OrderItem>() // Создаем пустой список для товаров
+                        });
+                    }
+                }
+
+                // Шаг 2: Для каждого заказа загружаем его товары
+                foreach (var order in orders)
+                {
+                    string sqlItems = @"
+                        SELECT product_name, supplier, size, quantity, price_per_unit 
+                        FROM order_items 
+                        WHERE order_id = @id";
+
+                    using (var cmd = new NpgsqlCommand(sqlItems, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", order.Id);
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                order.Items.Add(new OrderItem
+                                {
+                                    ProductItem = reader.GetString(0),
+                                    Supplier = reader.GetString(1),
+                                    Size = reader.GetDecimal(2),
+                                    Count = reader.GetInt32(3),
+                                    Price = (double)reader.GetDecimal(4)
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+
+            return orders;
         }
     }
 }

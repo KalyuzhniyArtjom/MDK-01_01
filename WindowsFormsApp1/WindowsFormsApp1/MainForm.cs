@@ -17,6 +17,15 @@ namespace WindowsFormsApp1
         public MainForm()
         {
             InitializeComponent();
+
+            // --- ПРИНУДИТЕЛЬНОЕ РАСТЯГИВАНИЕ ---
+            this.Dock = DockStyle.Fill;               // Растягиваем форму
+            tabControl1.Dock = DockStyle.Fill;        // Растягиваем вкладки
+            tabPage2.Dock = DockStyle.Fill;           // Растягиваем вкладку "Заказ"
+            OrdersGrid.Dock = DockStyle.Fill;         // Растягиваем таблицу
+            OrdersGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; // Колонки на всю ширину
+            // -----------------------------------
+
             typeof(Control).GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
                 .SetValue(MainLayout, true, null);
 
@@ -35,6 +44,7 @@ namespace WindowsFormsApp1
 
         private void MainForm_Load(object sender, System.EventArgs e)
         {
+            // Вывод ФИО и Роли
             if (lblUserInfo != null)
             {
                 lblUserInfo.Text = AuthUser.FullName;
@@ -45,6 +55,7 @@ namespace WindowsFormsApp1
                 lblUserRole.Text = AuthUser.Role;
             }
 
+            // Загрузка аватарки
             string avatarPath = Path.Combine(Application.StartupPath, @"..\\..\\..\\Import\\Заглушка фото профиля безфона.png");
 
             if (File.Exists(avatarPath))
@@ -52,6 +63,7 @@ namespace WindowsFormsApp1
                 pictureBox2.Image = Image.FromFile(avatarPath);
             }
 
+            // Блокировка для гостя
             if (AuthUser.Role == "Гость")
             {
                 SearchTextBox.Enabled = false;
@@ -60,6 +72,7 @@ namespace WindowsFormsApp1
                 PriceSortingComboBox.BackColor = Color.LightGray;
             }
 
+            // --- ЗАГРУЗКА ТОВАРОВ ---
             int countProducts = model_.GetCountProducts();
             for (int i = 0; i < countProducts; i++)
             {
@@ -74,7 +87,7 @@ namespace WindowsFormsApp1
 
             // Заполняем ComboBox категориями
             CategoryComboBox.Items.Clear();
-            CategoryComboBox.Items.Add("Все категории"); // Первый элемент
+            CategoryComboBox.Items.Add("Все категории");
 
             foreach (Product p in products)
             {
@@ -83,7 +96,50 @@ namespace WindowsFormsApp1
                     CategoryComboBox.Items.Add(p.Category);
                 }
             }
-            CategoryComboBox.SelectedIndex = 0; // Выбираем "Все категории"
+            CategoryComboBox.SelectedIndex = 0;
+
+            // --- ЗАГРУЗКА ЗАКАЗОВ ---
+            LoadOrders();
+        }
+
+        private void LoadOrders()
+        {
+            IOrderRepository repo = new PostgresOrderRepository();
+            List<Order> orders = repo.Load();
+
+            OrdersGrid.DataSource = orders;
+
+            // Настройка внешнего вида таблицы
+            OrdersGrid.AllowUserToAddRows = false;
+            OrdersGrid.ReadOnly = true;
+            OrdersGrid.RowHeadersVisible = false;
+
+            // Скрываем лишнюю колонку со списком товаров
+            if (OrdersGrid.Columns["Items"] != null)
+                OrdersGrid.Columns["Items"].Visible = false;
+
+            // Настраиваем заголовки
+            if (OrdersGrid.Columns["Id"] != null)
+                OrdersGrid.Columns["Id"].HeaderText = "Номер";
+
+            if (OrdersGrid.Columns["OrderDate"] != null)
+                OrdersGrid.Columns["OrderDate"].HeaderText = "Дата";
+
+            if (OrdersGrid.Columns["UserFullName"] != null)
+                OrdersGrid.Columns["UserFullName"].HeaderText = "ФИО клиента";
+        }
+
+        private void OrdersGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            Order selectedOrder = OrdersGrid.Rows[e.RowIndex].DataBoundItem as Order;
+
+            if (selectedOrder != null)
+            {
+                OrderDetailsForm detailsForm = new OrderDetailsForm(selectedOrder);
+                detailsForm.ShowDialog();
+            }
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -101,7 +157,6 @@ namespace WindowsFormsApp1
             MainLayout.ResumeLayout(true);
         }
 
-        // --- ВЫЗОВ ФИЛЬТРА ПРИ СМЕНЕ КАТЕГОРИИ ---
         private void CategoryComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             MainLayout.SuspendLayout();
@@ -110,7 +165,6 @@ namespace WindowsFormsApp1
             MainLayout.ResumeLayout(true);
         }
 
-        // --- ВЫЗОВ ПОИСКА ПРИ ВВОДЕ ТЕКСТА ---
         private void SearchTextBox_TextChanged(object sender, System.EventArgs e)
         {
             MainLayout.SuspendLayout();
