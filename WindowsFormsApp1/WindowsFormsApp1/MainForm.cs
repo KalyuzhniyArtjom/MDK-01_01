@@ -18,14 +18,12 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
 
-            // --- ПРИНУДИТЕЛЬНОЕ РАСТЯГИВАНИЕ ---
-            this.Dock = DockStyle.Fill;               // Растягиваем форму
-            tabControl1.Dock = DockStyle.Fill;        // Растягиваем вкладки
-            tabPage2.Dock = DockStyle.Fill;           // Растягиваем вкладку "Заказ"
-            OrdersGrid.Dock = DockStyle.Fill;         // Растягиваем таблицу
-            OrdersGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; // Колонки на всю ширину
-            // -----------------------------------
-
+            this.Dock = DockStyle.Fill;             
+            tabControl1.Dock = DockStyle.Fill;       
+            tabPage2.Dock = DockStyle.Fill;           
+            OrdersGrid.Dock = DockStyle.Fill;         
+            OrdersGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; 
+  
             typeof(Control).GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
                 .SetValue(MainLayout, true, null);
 

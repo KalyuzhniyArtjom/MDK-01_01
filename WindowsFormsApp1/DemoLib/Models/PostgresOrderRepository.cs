@@ -6,7 +6,7 @@ namespace DemoLib.Models
 {
     public class PostgresOrderRepository : IOrderRepository
     {
-        private string connectionString = "Host=localhost;Port=5432;Username=postgres;Password=1991;Database=Demo_Bashmak";
+        private string connectionString = "Host=192.168.1.48;Port=5432;Username=st52-03;Password=5203;Database=Demo_Bashmak";
 
         // 1. Метод для загрузки ТОВАРОВ
         public List<Product> LoadProducts()
